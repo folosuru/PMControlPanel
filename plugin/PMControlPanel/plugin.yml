@@ -1,0 +1,7 @@
+---
+name: PMControlPanel
+version: 0.0.1
+main: folosuru\PMControlPanel\PMControlPanel
+api: 4.7.0
+src-namespace-prefix: folosuru\PMControlPanel
+...
