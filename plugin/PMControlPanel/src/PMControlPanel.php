@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace folosuru\PMControlPanel;
 use pocketmine\utils\Config;
-use function yaml_emit;
-use function yaml_parse;
 use pocketmine\plugin\PluginBase;
 
 class PMControlPanel extends PluginBase{
@@ -21,8 +19,6 @@ class PMControlPanel extends PluginBase{
 			$this->getServer()->getPluginManager()->disablePlugin($this);
 		}
 		$this->getServer()->getAsyncPool()->submitTask(new connectCheckTask("http://localhost"));
-
-
 	}
 
 	protected function onLoad(): void{
@@ -45,11 +41,16 @@ class PMControlPanel extends PluginBase{
 		return $this->log;
 	}
 
+    public function resetLog(){
+        $this->log = [];
+    }
+
 
 	public function addLog(string $name, array $data, string $tag1, string $tag2, string $tag3) : void{
+        $json_data = json_encode($data);
 		$this->log[] = [
 			"name" => $name,
-			"data" => $data,
+			"data" => $json_data,
 			"tag1" => $tag1,
 			"tag2" => $tag2,
 			"tag3" => $tag3,

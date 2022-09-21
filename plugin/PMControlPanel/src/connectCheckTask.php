@@ -2,7 +2,6 @@
 
 namespace folosuru\PMControlPanel;
 
-use pocketmine\plugin\PluginManager;
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
 

@@ -33,6 +33,7 @@ class dataWriteTask extends Task {
 				($item["tag2"] !== null ? "'".$item["tag2"]."'" : "null").",".
 				($item["tag3"] !== null ? "'".$item["tag3"]."'" : "null").");");
 		}
+
 	}
 
 }
