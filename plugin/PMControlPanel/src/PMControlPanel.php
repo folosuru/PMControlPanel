@@ -12,13 +12,13 @@ class PMControlPanel extends PluginBase{
 	private array $log;
 
 	protected function onEnable(): void{
+        if (!file_exists($this->getDataFolder()."config.yml")){
+            $this->saveDefaultConfig();
+        }
 		$config = new Config($this->getDataFolder()."config.yml",Config::YAML);
-		if ($config->exists("path")){
-			$this->tmppath = $config->get("path");
-		}else{
-			$this->getServer()->getPluginManager()->disablePlugin($this);
-		}
-		$this->getServer()->getAsyncPool()->submitTask(new connectCheckTask("http://localhost"));
+			$url = $config->get("web-URL");
+            $this->getServer()->getAsyncPool()->submitTask(new connectCheckTask("http://localhost".$url));
+            $this->getServer()->getPluginManager()->registerEvents(new basicListener(),$this);
 	}
 
 	protected function onLoad(): void{
@@ -46,7 +46,7 @@ class PMControlPanel extends PluginBase{
     }
 
 
-	public function addLog(string $name, array $data, string $tag1, string $tag2, string $tag3) : void{
+	public function addLog(string $name, array $data, string $tag1 = null, string $tag2 = null, string $tag3 = null) : void{
         $json_data = json_encode($data);
 		$this->log[] = [
 			"name" => $name,

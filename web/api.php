@@ -12,23 +12,34 @@ if (array_key_exists("request",$_POST)){
                 break;
 
          case "get_log":
-             //if (array_key_exists("token",$_POST)){
+             /*
+             if (array_key_exists("token",$_POST)){
 
-             //}
+             }
+             */
              if (file_exists(setting::tmp_file_path."log.sqlite")) {
                  $db = new SQLite3(setting::tmp_file_path . "log.sqlite");
                  if (array_key_exists("last_time", $_POST)){
                      $unix_time = (int) $_POST["last_time"];
-                     $db->query("select unix_time,event_name,data,tag1,tag2,tag3 from log where unix_time>=".$unix_time.";");
-
-
+                     $result = [];
+                     $result_db = $db->query("select unix_time,event_name,data,tag1,tag2,tag3 from log where unix_time>=".$unix_time.";");
+                     while ($item = $result->fetchArray()){
+                         $result[] = $item;
+                     }
+                     echo json_encode($result);
                  }
              }else{
                  echo "hmm";
              }
+             break;
+
+         case "get_log_search":
+             $db = new SQLite3(setting::tmp_file_path."log.sqlite");
+
+
 	}
 
 
 }else{
-	echo "who are you?";
+	echo "hello!";
 }

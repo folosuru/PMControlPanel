@@ -1,0 +1,42 @@
+html {
+    height: 100%;
+}
+body{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#log_area {
+    float: right;
+    display: block;
+    width: 25%;
+    height: 100%;
+    background-color: antiquewhite;
+    border-left: 1px solid black;
+    min-width: 250px;
+}
+
+#log_box {
+    width: 90%;
+    height: 30%;
+    margin: 0 5%;
+    resize: none;
+    border: black solid 1px;
+    background-color: lightgray;
+    overflow-y: scroll;
+}
+
+#log_area h2{
+    margin: 5%;
+}
+
+.log_line{
+    width: auto;
+    background-color: #e2e2e2;
+    margin: 2px 1px;
+}
+
+.log_time{
+    margin-right: 4px;
+}

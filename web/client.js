@@ -1,0 +1,3 @@
+function selectlog(id) {
+
+}
